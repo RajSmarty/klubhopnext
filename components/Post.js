@@ -9,7 +9,17 @@ import {
 } from '@heroicons/react/outline';
 import { HeartIcon as HeartIconFilled } from '@heroicons/react/solid';
 import { useSession } from 'next-auth/react';
-import { addDoc, collection, deleteDoc, doc, onSnapshot, orderBy, query, serverTimestamp, setDoc } from "@firebase/firestore"
+import {
+    addDoc,
+    collection,
+    deleteDoc,
+    doc,
+    onSnapshot,
+    orderBy,
+    query,
+    serverTimestamp,
+    setDoc,
+} from "@firebase/firestore"
 import { db } from "../firebase"
 import Moment from "react-moment"
 
@@ -91,7 +101,15 @@ export default function Post({ id, username, userImg, img, caption }) {
                 <DotsHorizontalIcon className='h-5' />
             </div>
 
-            <img src={img} className='object-cover w-full ' alt="" />
+            {<>
+
+                {/* <img src={img} style={{ height: "100%" }} className='object-cover w-full skeleton'  /> */}
+                
+
+                <video style={{height: "450px", width:"100%"}} className='w-full' alt="video"  controls loop >
+                    <source  src={img} />
+                </video>
+            </>}
 
             {/* Buttons */}
             {session && (
@@ -125,7 +143,7 @@ export default function Post({ id, username, userImg, img, caption }) {
             </p>
 
             {/* Comments */}
-            {comments.length > 0 && (
+            {/* {comments.length > 0 && (
                 <div className='ml-10 h-20 overflow-y-scroll scrollbar-thumb-black scrollbar-thin'>
                     {comments.map(comment => {
                         <div className='flex items-center space-x-2 mb-3' key={comment.id} >
@@ -137,7 +155,41 @@ export default function Post({ id, username, userImg, img, caption }) {
                         </div>
                     })}
                 </div>
-            )}
+            )} */}
+
+
+
+            <div className='ml-10 h-20 overflow-y-scroll scrollbar-thumb-black scrollbar-thin'>
+                <div className='flex items-center space-x-2 mb-3'>
+                    {/* <img className='h-7 rounded-full' src={session.user.userImg} alt="" /> */}
+                    <img src={userImg} className='rounded-full h-12 w-12 object-contain border p-1 mr-1' alt="" />
+                    <p className='text-sm flex-1 '><span className='font-bold mx-1'>{session.user.username}</span>Hello</p>
+                    <Moment className='pr-5 text-xs' fromNow>
+                        {session.user.timsestamp?.toDate()}
+                    </Moment>
+                </div>
+
+                <div className='flex items-center space-x-2 mb-3'>
+                    {/* <img className='h-7 rounded-full' src={session.user.userImg} alt="" /> */}
+                    <img src="/angelina.jpeg" className='rounded-full h-12 w-12 object-contain border p-1 mr-1' alt="" />
+                    <p className='text-sm flex-1 '><span className='font-bold mx-1'>Angelina</span>Hi there...</p>
+                    <Moment className='pr-5 text-xs' fromNow>
+                        {session.user.timsestamp?.toDate()}
+                    </Moment>
+                </div>
+
+                <div className='flex items-center space-x-2 mb-3'>
+                    {/* <img className='h-7 rounded-full' src={session.user.userImg} alt="" /> */}
+                    <img src={session.user.userImage} className='rounded-full h-12 w-12 object-contain border p-1 mr-1' alt="" />
+                    <p className='text-sm flex-1 '><span className='font-bold mx-1'>{session.user.username}</span>Hola</p>
+                    <Moment className='pr-5 text-xs' fromNow>
+                        {session.user.timsestamp?.toDate()}
+                    </Moment>
+                </div>
+            </div>
+
+
+
 
 
             {/* Input box */}

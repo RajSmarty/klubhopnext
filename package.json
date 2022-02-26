@@ -10,6 +10,7 @@
     "@headlessui/react": "^1.4.3",
     "@heroicons/react": "^1.0.5",
     "@tailwindcss/forms": "^0.4.0",
+    "bootstrap-next": "^1.0.5",
     "faker": "^5.5.3",
     "firebase": "^9.6.4",
     "next": "latest",

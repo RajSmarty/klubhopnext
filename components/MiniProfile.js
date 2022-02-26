@@ -7,8 +7,8 @@ export default function MiniProfile() {
     const { data: session, status } = useSession();
 
     return (
-        <div style={{ color: "white" }} className='flex items-center justify-between mt-10 ml-10'>
-            <img className='w-16 h-16 rounded-full border-blue-500 border p-[2px]' src={session?.user?.image} alt="" />
+        <div style={{ color: "white" }} className='flex items-center justify-between mt-10 ml-10 '>
+            <img className='w-16 h-16 rounded-full border-blue-500 border p-[2px] adjustImg ' src={session?.user?.image} alt="" />
 
             <div className='flex-1 mx-4'>
                 <h2 className='font-bold'>{session?.user?.username}</h2>
